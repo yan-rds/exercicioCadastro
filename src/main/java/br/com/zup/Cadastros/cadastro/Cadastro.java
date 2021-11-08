@@ -30,6 +30,14 @@ public class Cadastro {
         return cpf;
     }
 
+    public LocalDate getDataDoCadastro() {
+        return dataDoCadastro;
+    }
+
+    public void setDataDoCadastro(LocalDate dataDoCadastro) {
+        this.dataDoCadastro = dataDoCadastro;
+    }
+
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }

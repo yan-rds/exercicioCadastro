@@ -1,5 +1,6 @@
 package br.com.zup.Cadastros.cadastro;
 
+import br.com.zup.Cadastros.cadastro.dtos.CadastroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,5 +9,22 @@ public class CadastroService {
     @Autowired
     private CadastroRepository cadastroRepository;
 
-    public
+    public void realizarCadastro (CadastroDTO cadastroDTO){
+        cadastroRepository.save(instanciarModel(cadastroDTO));
+    }
+
+    public Cadastro instanciarModel (CadastroDTO cadastroDTO){
+        Cadastro cadastro = new Cadastro();
+        cadastro.setBairro(cadastroDTO.getBairro());
+        cadastro.setCidade(cadastroDTO.getCidade());
+        cadastro.setCpf(cadastroDTO.getCpf());
+        cadastro.setIdade(cadastroDTO.getIdade());
+        cadastro.setNome(cadastroDTO.getNome());
+        cadastro.setMoraSozinho(cadastroDTO.isMoraSozinho());
+        cadastro.setTemPet(cadastroDTO.isTemPet());
+        cadastro.setNomeDoParenteProximo(cadastroDTO.getNomeDoParenteProximo());
+        cadastro.setSobrenome(cadastroDTO.getSobrenome());
+
+        return cadastro;
+    }
 }
