@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class CadastroService {
@@ -30,5 +31,10 @@ public class CadastroService {
         cadastro.setDataDoCadastro(dataAtual);
 
         return cadastro;
+    }
+
+    public List<Cadastro> mostrarTodosCadastros (){
+        Iterable <Cadastro> cadastros = cadastroRepository.findAll();
+        return (List<Cadastro>) cadastros;
     }
 }

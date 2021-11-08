@@ -2,10 +2,9 @@ package br.com.zup.Cadastros.cadastro;
 
 import br.com.zup.Cadastros.cadastro.dtos.CadastroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/cadastros")
@@ -16,6 +15,11 @@ public class CadastroController {
     @PostMapping
     public void cadastrarPessoa (@RequestBody CadastroDTO cadastroDTO){
         cadastroService.realizarCadastro(cadastroDTO);
+    }
+
+    @GetMapping
+    public List<Cadastro> todosOsCadastros (){
+        return cadastroService.mostrarTodosCadastros();
     }
 
     /*
