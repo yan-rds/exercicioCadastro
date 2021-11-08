@@ -12,7 +12,6 @@ public class CadastroDTO {
     private boolean moraSozinho;
     private boolean temPet;
     private int idade;
-    private LocalDate dataDoCadastro;
 
     public CadastroDTO() {
     }
@@ -89,11 +88,4 @@ public class CadastroDTO {
         this.idade = idade;
     }
 
-    public LocalDate getDataDoCadastro() {
-        return dataDoCadastro;
-    }
-
-    public void setDataDoCadastro(LocalDate dataDoCadastro) {
-        this.dataDoCadastro = dataDoCadastro;
-    }
 }

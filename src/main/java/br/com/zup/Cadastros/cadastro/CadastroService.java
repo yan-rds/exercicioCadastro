@@ -3,6 +3,7 @@ package br.com.zup.Cadastros.cadastro;
 import br.com.zup.Cadastros.cadastro.dtos.CadastroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -51,6 +52,29 @@ public class CadastroService {
     public List<Cadastro> filtrarIdade(int idade){
         Iterable <Cadastro> cadastros = cadastroRepository.findAllByIdade(idade);
         return (List<Cadastro>) cadastros;
+    }
+
+    public void removerCadastro (String cpf){
+        boolean cadastroEncontrado = false;
+        Cadastro cadastroRemovido = null;
+        for (Cadastro cadastro : cadastroRepository.findAll()){
+            if (cadastro.getCpf().equals(cpf)){
+                cadastroRemovido = cadastro;
+                cadastroEncontrado = true;
+            }
+        }
+        if (cadastroEncontrado){
+            cadastroRepository.delete(cadastroRemovido);
+        }
+    }
+
+    public Cadastro encontrarUmCadastro (String cpf){
+        for (Cadastro cadastro : cadastroRepository.findAll()) {
+            if (cadastro.getCpf().equals(cpf)) {
+                return cadastro;
+            }
+        }
+        throw new RuntimeException("Não encontrado");
     }
 
 }
