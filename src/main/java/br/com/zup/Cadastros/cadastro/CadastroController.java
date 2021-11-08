@@ -1,6 +1,7 @@
 package br.com.zup.Cadastros.cadastro;
 
 import br.com.zup.Cadastros.cadastro.dtos.CadastroDTO;
+import br.com.zup.Cadastros.cadastro.dtos.CadastroResumidoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,26 +21,28 @@ public class CadastroController {
     }
 
     @GetMapping
-    public List<Cadastro> todosOsCadastros (@RequestParam Optional<Boolean> moraSozinho,
+    public List<CadastroResumidoDTO> todosOsCadastros (@RequestParam Optional<Boolean> moraSozinho,
                                             @RequestParam Optional<Boolean> temPet,
                                             @RequestParam Optional<Integer> idade){
-        List <Cadastro> cadastros = new ArrayList<>();
+        List <CadastroResumidoDTO> cadastros = new ArrayList<>();
         if (moraSozinho.isPresent())
         for (Cadastro cadastro : cadastroService.filtrarMoraSozinho(moraSozinho.get())){
-            cadastros.add(cadastro);
+            cadastros.add(new CadastroResumidoDTO(cadastro.getCpf(), cadastro.getNome(), cadastro.getSobrenome()));
         }
         else if (temPet.isPresent()){
             for (Cadastro cadastro : cadastroService.filtrarTemPet(temPet.get())){
-                cadastros.add(cadastro);
+                cadastros.add(new CadastroResumidoDTO(cadastro.getCpf(), cadastro.getNome(), cadastro.getSobrenome()));
             }
         }
         else if (idade.isPresent()){
             for (Cadastro cadastro : cadastroService.filtrarIdade(idade.get())){
-                cadastros.add(cadastro);
+                cadastros.add(new CadastroResumidoDTO(cadastro.getCpf(), cadastro.getNome(), cadastro.getSobrenome()));
             }
         }
         else {
-            return cadastroService.mostrarTodosCadastros();
+            for (Cadastro cadastro : cadastroService.mostrarTodosCadastros()){
+                cadastros.add(new CadastroResumidoDTO(cadastro.getCpf(), cadastro.getNome(), cadastro.getSobrenome()));
+            }
         }
         return cadastros;
     }
