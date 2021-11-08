@@ -11,8 +11,8 @@ public class CadastroService {
     @Autowired
     private CadastroRepository cadastroRepository;
 
-    public Cadastro realizarCadastro (CadastroDTO cadastroDTO){
-       return cadastroRepository.save(instanciarModel(cadastroDTO));
+    public void realizarCadastro (CadastroDTO cadastroDTO){
+       cadastroRepository.save(instanciarModel(cadastroDTO));
     }
 
     public Cadastro instanciarModel (CadastroDTO cadastroDTO){

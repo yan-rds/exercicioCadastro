@@ -14,8 +14,8 @@ public class CadastroController {
     private CadastroService cadastroService;
 
     @PostMapping
-    public Cadastro cadastrarPessoa (@RequestBody CadastroDTO cadastroDTO){
-        return cadastroService.realizarCadastro(cadastroDTO);
+    public void cadastrarPessoa (@RequestBody CadastroDTO cadastroDTO){
+        cadastroService.realizarCadastro(cadastroDTO);
     }
 
     /*
