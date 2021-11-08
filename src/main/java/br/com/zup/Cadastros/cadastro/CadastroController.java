@@ -1,6 +1,9 @@
 package br.com.zup.Cadastros.cadastro;
 
+import br.com.zup.Cadastros.cadastro.dtos.CadastroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,6 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class CadastroController {
     @Autowired
     private CadastroService cadastroService;
+
+    @PostMapping
+    public Cadastro cadastrarPessoa (@RequestBody CadastroDTO cadastroDTO){
+        return cadastroService.realizarCadastro(cadastroDTO);
+    }
 
     /*
     todo  1 - crie um metodo para cadastrar uma pessoa.
