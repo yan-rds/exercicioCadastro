@@ -4,7 +4,9 @@ import br.com.zup.Cadastros.cadastro.dtos.CadastroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/cadastros")
@@ -18,8 +20,28 @@ public class CadastroController {
     }
 
     @GetMapping
-    public List<Cadastro> todosOsCadastros (){
-        return cadastroService.mostrarTodosCadastros();
+    public List<Cadastro> todosOsCadastros (@RequestParam Optional<Boolean> moraSozinho,
+                                            @RequestParam Optional<Boolean> temPet,
+                                            @RequestParam Optional<Integer> idade){
+        List <Cadastro> cadastros = new ArrayList<>();
+        if (moraSozinho.isPresent())
+        for (Cadastro cadastro : cadastroService.filtrarMoraSozinho(moraSozinho.get())){
+            cadastros.add(cadastro);
+        }
+        else if (temPet.isPresent()){
+            for (Cadastro cadastro : cadastroService.filtrarTemPet(temPet.get())){
+                cadastros.add(cadastro);
+            }
+        }
+        else if (idade.isPresent()){
+            for (Cadastro cadastro : cadastroService.filtrarIdade(idade.get())){
+                cadastros.add(cadastro);
+            }
+        }
+        else {
+            return cadastroService.mostrarTodosCadastros();
+        }
+        return cadastros;
     }
 
     /*

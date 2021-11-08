@@ -37,4 +37,20 @@ public class CadastroService {
         Iterable <Cadastro> cadastros = cadastroRepository.findAll();
         return (List<Cadastro>) cadastros;
     }
+
+    public List<Cadastro> filtrarMoraSozinho(boolean moraSozinho){
+        Iterable <Cadastro> cadastros = cadastroRepository.findAllByMoraSozinho(moraSozinho);
+        return (List<Cadastro>) cadastros;
+    }
+
+    public List<Cadastro> filtrarTemPet(boolean temPet){
+        Iterable <Cadastro> cadastros = cadastroRepository.findAllByTemPet(temPet);
+        return (List<Cadastro>) cadastros;
+    }
+
+    public List<Cadastro> filtrarIdade(int idade){
+        Iterable <Cadastro> cadastros = cadastroRepository.findAllByIdade(idade);
+        return (List<Cadastro>) cadastros;
+    }
+
 }
