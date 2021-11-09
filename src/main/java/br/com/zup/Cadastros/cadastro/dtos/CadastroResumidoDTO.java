@@ -1,8 +1,13 @@
 package br.com.zup.Cadastros.cadastro.dtos;
 
+import javax.validation.constraints.NotBlank;
+
 public class CadastroResumidoDTO {
+    @NotBlank
     private String cpf;
+    @NotBlank
     private String nome;
+    @NotBlank
     private String sobrenome;
 
     public CadastroResumidoDTO(String id, String nome, String sobrenome) {

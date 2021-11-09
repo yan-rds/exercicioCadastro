@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +19,7 @@ public class CadastroController {
 
     @PostMapping
     @ResponseStatus (HttpStatus.CREATED)
-    public void cadastrarPessoa (@RequestBody CadastroDTO cadastroDTO){
+    public void cadastrarPessoa (@RequestBody @Valid CadastroDTO cadastroDTO){
         cadastroService.realizarCadastro(cadastroDTO);
     }
 

@@ -1,6 +1,7 @@
 package br.com.zup.Cadastros.cadastro;
 
 import br.com.zup.Cadastros.cadastro.dtos.CadastroDTO;
+import br.com.zup.Cadastros.cadastro.exceptions.NaoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -74,7 +75,7 @@ public class CadastroService {
                 return cadastro;
             }
         }
-        throw new RuntimeException("Não encontrado");
+        throw new NaoEncontradoException("Cpf não encontrado");
     }
 
 }

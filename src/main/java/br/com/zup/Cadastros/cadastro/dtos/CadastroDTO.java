@@ -1,13 +1,24 @@
 package br.com.zup.Cadastros.cadastro.dtos;
 
-import java.time.LocalDate;
+import org.hibernate.validator.constraints.br.CPF;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 
 public class CadastroDTO {
+    @NotBlank
+    @CPF
     private String cpf;
+    @NotBlank
     private String nome;
+    @NotBlank
     private String sobrenome;
+    @NotBlank
     private String cidade;
+    @NotBlank
     private String bairro;
+    @NotBlank
     private String nomeDoParenteProximo;
     private boolean moraSozinho;
     private boolean temPet;
